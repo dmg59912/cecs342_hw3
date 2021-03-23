@@ -20,16 +20,15 @@ struct person
 	std::string name_;
 };
 
+bool compare_by_age(const person &, const person &);
+bool compare_by_name(const person&, const person&);
+
 template <class T>
 void print(std::vector<T>);
 
 template <class T>
 void print_stp(std::vector<T>);
 
-template <class T>
-void print_st(std::vector<T> , std::vector<T>  );
-
-void prints(people);
 
 
 int main(void)
@@ -76,7 +75,7 @@ int main(void)
 	std::vector<person> people;
 
 	//adding ppl to the vector first 
-	for(int i = 0; i < 10; ++ i)
+	for (int i = 0; i < 17; ++i)
 		people.push_back(person());
 
 
@@ -105,46 +104,32 @@ int main(void)
 	people[7].age_ = 19;
 	people[7].name_ = "Mac";
 
-	people[8].age_ = 20;
-	people[8].name_ = "Danna";
+	people[8].age_ = 27;
+	people[8].name_ = "Romana";
 
-	people[9].age_ = 25;
-	people[9].name_ = "Natalie";
+	people[9].age_ = 32;
+	people[9].name_ = "Doretha";
 
-	//people[5].age_ = 22;
-	//people[5].name_ = "Cindy";
+	people[10].age_ = 20;
+	people[10].name_ = "Danna";
 
+	people[11].age_ = 23;
+	people[11].name_ = "Zara";
 
-	/*ppl.age.push_back(20);
-	ppl.name.push_back("Hal");
+	people[12].age_ = 26;
+	people[12].name_ = "Rosalyn";
 
-	ppl.age.push_back(31);
-	ppl.name.push_back("Susann");
+	people[13].age_ = 24;
+	people[13].name_ = "Risa";
 
-	ppl.age.push_back(19);
-	ppl.name.push_back("Dwight");
+	people[14].age_ = 28;
+	people[14].name_ = "Benny";
 
-	ppl.age.push_back(21);
-	ppl.name.push_back("Kassandra");
+	people[15].age_ = 33;
+	people[15].name_ = "Juan";
 
-	ppl.age.push_back(25);
-	ppl.name.push_back("Lawrance");
-
-	ppl.age.push_back(22);
-	ppl.name.push_back("Cindy");
-
-	ppl.age.push_back(27);
-	ppl.name.push_back("Cory");
-
-	ppl.age.push_back(19);
-	ppl.name.push_back("Mac");
-
-	//....
-	ppl.age.push_back(20);
-	ppl.name.push_back("Danna");
-
-	ppl.age.push_back(25);
-	ppl.name.push_back("Natalie");*/
+	people[16].age_ = 25;
+	people[16].name_ = "Natalie";
 
 
 	std::cout << "Now printing contents of the struct \n";
@@ -152,19 +137,24 @@ int main(void)
 
 
 	std::cout << "\nNow sorting struct of ppl\n";
-	std::sort(people.begin(), people.end());
+	std::sort(people.begin(), people.end(), compare_by_age);
+	std::sort(people.begin(), people.end(), compare_by_name);
 	print_stp(people);
 
-	//prints(ppl);
 
 
-	//std::cout << "Now sorting struct of ppl\n";
-	//std::sort(ppl.age.begin(), ppl.age.end(), std::greater<int>());
-
-	//std::cout << "Now printing contents of the  sorted struct \n";
-	//prints(ppl);
 
 	return 0;
+}
+
+bool compare_by_name(const person& value, const person& value2)
+{
+	return value.name_ < value.name_;
+}
+
+bool compare_by_age(const person& value, const person& value2)
+{
+	return value.age_ > value2.age_;
 }
 
 template <class T>
@@ -184,16 +174,3 @@ void print(std::vector<T> values)
 }
 
 
-template <class T>
-void print_st(std::vector<T> age, std::vector<T> name)
-{
-	for (int i = 0; i < age.size(); ++i)
-		std::cout << name.at(i) << ", " << age.at(i) << std::endl;
-}
-
-
-void prints(people ppl)
-{
-	for (int i = 0; i < ppl.age.size(); ++i)
-		std::cout << ppl.name.at(i) << ", " << ppl.age.at(i) << std::endl;
-}
